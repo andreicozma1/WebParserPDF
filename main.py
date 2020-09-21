@@ -10,7 +10,7 @@ class WebParserPDF:
         self.url = url
         self.savePath = savePath
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; SM-G928X Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.83 Mobile Safari/537.36'}
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36'}
 
         print("WebParserPDF - init")
         print(" - URL:", self.url)
