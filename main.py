@@ -15,7 +15,7 @@ class WebParserPDF:
         print("WebParserPDF - init")
         print(" - URL:", self.url)
         print(" - Save Path:", self.savePath)
-        if not os.path.exists("downloads"): os.mkdir(self.savePath)
+        if not os.path.exists(self.savePath): os.mkdir(self.savePath)
 
         response = requests.get(self.url, headers=self.headers)
         soup = BeautifulSoup(response.text, "html.parser")
