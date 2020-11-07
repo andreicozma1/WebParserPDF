@@ -1,5 +1,5 @@
 # WebParserPDF
-
+## Downloads all PDF files from a given URL
 1. Ensure Python3 and Pip3 are installed
 ```
 sudo apt-get install python3 python3-pip
