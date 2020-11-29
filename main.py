@@ -1,3 +1,4 @@
+import wget as wget
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import requests
@@ -19,11 +20,32 @@ class WebParserPDF:
 
         response = requests.get(self.url, headers=self.headers)
         soup = BeautifulSoup(response.text, "html.parser")
+
+        for i in soup.select("a[href*=\"docs.google.com\"]"):
+            url = i['href']
+
+            # Get export url
+            exporturl = url.split('/')
+            exporturl[-1] = "export/pdf"
+            exporturl = "/".join(exporturl)
+            print("Downloading", exporturl)
+
+            wget.download(exporturl, savePath)
+
         for i in soup.select("a[href$='.pdf']"):
             fname = os.path.join(self.savePath, i['href'].split('/')[-1])
             print("Downloading", fname)
-            with open(fname, 'wb') as f:
-                f.write(requests.get(urljoin(self.url, i['href'])).content)
+            wget.download(urljoin(self.url, i['href']), savePath)
+
+        for i in soup.select("a[href$='.pptx']"):
+            fname = os.path.join(self.savePath, i['href'].split('/')[-1])
+            print("Downloading", fname)
+            wget.download(urljoin(self.url, i['href']), savePath)
+
+        for i in soup.select("a[href$='.txt']"):
+            fname = os.path.join(self.savePath, i['href'].split('/')[-1])
+            print("Downloading", fname)
+            wget.download(urljoin(self.url, i['href']), savePath)
 
         print("Done")
 
